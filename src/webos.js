@@ -62,7 +62,7 @@ class WebOSClient extends EventEmitter {
             if (timeoutMs > 0) {
                 timeoutHandle = setTimeout(() => {
                     this.close();
-                    reject(new Error("Connection / pairing timed out after " + (timeoutMs / 1000) + "s."));
+                    reject(new Error("A TV está desligada ou não respondeu na rede (timeout " + (timeoutMs / 1000) + "s)."));
                 }, timeoutMs);
             }
 
@@ -94,7 +94,9 @@ class WebOSClient extends EventEmitter {
             });
 
             this.ws.on("error", (err) => {
-                this.emit("error", err);
+                if (this.listenerCount("error") > 0) {
+                    this.emit("error", err);
+                }
             });
 
             this.ws.on("close", (code, reason) => {
@@ -388,11 +390,19 @@ class WebOSClient extends EventEmitter {
     close() {
         this.connected = false;
         if (this.pointerWs) {
-            try { this.pointerWs.close(); } catch (_) {}
+            try {
+                this.pointerWs.on("error", () => {});
+                if (typeof this.pointerWs.terminate === "function") this.pointerWs.terminate();
+                else this.pointerWs.close();
+            } catch (_) {}
             this.pointerWs = null;
         }
         if (this.ws) {
-            try { this.ws.close(); } catch (_) {}
+            try {
+                this.ws.on("error", () => {});
+                if (typeof this.ws.terminate === "function") this.ws.terminate();
+                else this.ws.close();
+            } catch (_) {}
             this.ws = null;
         }
         this.callbacks.clear();

@@ -74,7 +74,7 @@ async function main() {
         mac: config.mac,
         clientKey: config.clientKey
     });
-
+    client.on("error", () => {});
     try {
         await client.connect(10000);
     } catch (e) {
