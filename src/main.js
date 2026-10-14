@@ -25,10 +25,12 @@ let state = {
     muted: false,
     hasVolume: false,
     foregroundId: "",
-    foregroundTitle: "TV is on",
+    foregroundTitle: "",
     apps: [],
     inputs: [],
     picture: {},
+    isTvOn: false,
+    powerState: "Off",
     error: null,
     notice: null
 };
@@ -216,6 +218,8 @@ async function connectToTV(isPairing = false) {
         state.connected = false;
         state.connecting = false;
         state.pairing = false;
+        state.isTvOn = false;
+        state.powerState = "Off";
         notifyState();
         scheduleReconnect();
     });
@@ -294,19 +298,28 @@ function startPolling() {
                 await refreshTVState();
             } catch (_) {}
         }
-    }, 20000);
+    }, 5000);
 }
 
 async function refreshTVState() {
     if (!client || !state.connected) return;
     try {
-        const [vol, fg, launchRes, inputsRes, pic] = await Promise.all([
+        const [vol, fg, launchRes, inputsRes, pic, pwr] = await Promise.all([
             client.getVolume().catch(() => null),
             client.getForegroundApp().catch(() => null),
             client.listLaunchPoints().catch(() => null),
             client.getExternalInputList().catch(() => null),
-            client.getPictureSettings().catch(() => null)
+            client.getPictureSettings().catch(() => null),
+            client.getPowerState().catch(() => null)
         ]);
+
+        if (pwr && pwr.state) {
+            state.powerState = pwr.state;
+            state.isTvOn = pwr.state.toLowerCase() === "active";
+        } else if (state.connected) {
+            state.powerState = "Active";
+            state.isTvOn = true;
+        }
 
         if (vol) {
             const p = vol.volumeStatus || vol;

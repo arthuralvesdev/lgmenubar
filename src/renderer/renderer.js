@@ -65,6 +65,56 @@ function updateUI(state) {
     const btnPower = document.getElementById("btn-power");
 
     dot.className = "status-dot";
+    const pwrBadge = document.getElementById("power-badge");
+    const pwrPill = document.getElementById("hero-power-pill");
+    const pwrPillText = document.getElementById("hero-power-text");
+    const btnHeroWake = document.getElementById("btn-hero-wake");
+
+    const pState = (state.powerState || "").toLowerCase();
+    const isTvOn = state.isTvOn || (state.connected && pState === "active");
+    const isStandby = pState === "suspend";
+
+    if (state.connecting) {
+        if (pwrBadge) {
+            pwrBadge.className = "power-badge tv-standby";
+            pwrBadge.textContent = "CONECTANDO...";
+        }
+        if (pwrPill) {
+            pwrPill.className = "power-pill standby";
+            pwrPillText.textContent = "CONECTANDO...";
+        }
+    } else if (isTvOn) {
+        if (pwrBadge) {
+            pwrBadge.className = "power-badge tv-on";
+            pwrBadge.textContent = "TV LIGADA";
+        }
+        if (pwrPill) {
+            pwrPill.className = "power-pill on";
+            pwrPillText.textContent = "LIGADA (TELA ATIVA)";
+        }
+        if (btnHeroWake) btnHeroWake.classList.add("hidden");
+    } else if (isStandby) {
+        if (pwrBadge) {
+            pwrBadge.className = "power-badge tv-standby";
+            pwrBadge.textContent = "EM STANDBY";
+        }
+        if (pwrPill) {
+            pwrPill.className = "power-pill standby";
+            pwrPillText.textContent = "STANDBY (TELA APAGADA)";
+        }
+        if (btnHeroWake) btnHeroWake.classList.remove("hidden");
+    } else {
+        if (pwrBadge) {
+            pwrBadge.className = "power-badge tv-off";
+            pwrBadge.textContent = "TV DESLIGADA";
+        }
+        if (pwrPill) {
+            pwrPill.className = "power-pill off";
+            pwrPillText.textContent = "TV DESLIGADA";
+        }
+        if (btnHeroWake) btnHeroWake.classList.remove("hidden");
+    }
+
     if (state.connected) {
         dot.classList.add("connected");
         statusText.textContent = `${state.model || "LG webOS"} · Conectado`;
@@ -96,9 +146,24 @@ function updateUI(state) {
     const theme = getThemeForApp(state.foregroundId || "", state.foregroundTitle || "");
     heroCard.style.background = theme.color;
     heroCard.style.borderColor = theme.border;
-    heroAppTitle.textContent = state.foregroundTitle ? (state.foregroundTitle.toUpperCase()) : "TV LIGADA";
-    heroTitle.textContent = state.foregroundTitle || "Sua TV LG";
-    heroTagline.textContent = theme.tagline;
+
+    if (isTvOn) {
+        heroAppTitle.textContent = state.foregroundTitle ? state.foregroundTitle.toUpperCase() : "TV LIGADA";
+        heroTitle.textContent = state.foregroundTitle || "TV Ligada";
+        heroTagline.textContent = theme.tagline || "Sua TV LG. Seu controle.";
+    } else if (isStandby) {
+        heroAppTitle.textContent = "STANDBY";
+        heroTitle.textContent = "TV em Modo de Espera";
+        heroTagline.textContent = "A tela está apagada. Clique abaixo para ligá-la.";
+    } else if (state.connecting) {
+        heroAppTitle.textContent = "CONECTANDO...";
+        heroTitle.textContent = "Buscando TV na rede...";
+        heroTagline.textContent = "Aguardando resposta da TV...";
+    } else {
+        heroAppTitle.textContent = "DESLIGADA";
+        heroTitle.textContent = "TV Desligada";
+        heroTagline.textContent = "A TV está desligada. Envie um sinal Wake-on-LAN para ligar.";
+    }
 
     // Volume
     const volSlider = document.getElementById("volume-slider");
@@ -205,6 +270,13 @@ document.getElementById("btn-power").addEventListener("click", () => {
     api.power();
 });
 
+const btnHeroWake = document.getElementById("btn-hero-wake");
+if (btnHeroWake) {
+    btnHeroWake.addEventListener("click", () => {
+        api.power();
+        showToast("Enviando sinal para ligar a TV...");
+    });
+}
 // Window controls
 document.getElementById("btn-win-min").addEventListener("click", () => api.minimizeWindow());
 document.getElementById("btn-win-close").addEventListener("click", () => api.hideWindow());

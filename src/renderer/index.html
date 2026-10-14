@@ -42,6 +42,7 @@
         <div id="status-banner" class="status-banner">
             <span id="status-dot" class="status-dot"></span>
             <span id="status-text" class="status-text">Conectando...</span>
+            <span id="power-badge" class="power-badge">TV LIGADA</span>
         </div>
 
         <!-- Pairing prompt modal -->
@@ -85,11 +86,20 @@
                 <div id="hero-card" class="hero-card">
                     <div class="hero-backdrop"></div>
                     <div class="hero-content">
-                        <div class="hero-app-badge">
-                            <span id="hero-app-title">Carregando...</span>
+                        <div class="hero-status-row">
+                            <div class="hero-app-badge">
+                                <span id="hero-app-title">Carregando...</span>
+                            </div>
+                            <div id="hero-power-pill" class="power-pill on">
+                                <span class="pill-dot"></span>
+                                <span id="hero-power-text">LIGADA</span>
+                            </div>
                         </div>
                         <h2 id="hero-title" class="hero-title">Sua TV LG</h2>
                         <p id="hero-tagline" class="hero-tagline">Tudo que você ama, na tela grande.</p>
+                        <button id="btn-hero-wake" class="btn-hero-wake hidden">
+                            ⚡ Ligar TV agora (Wake-on-LAN)
+                        </button>
                     </div>
                 </div>
 

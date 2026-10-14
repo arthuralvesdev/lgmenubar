@@ -137,6 +137,102 @@ body {
     color: rgba(255, 255, 255, 0.6);
 }
 
+.power-badge {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.power-badge.tv-on {
+    background: rgba(30, 215, 96, 0.2);
+    color: #1ed760;
+    border: 1px solid rgba(30, 215, 96, 0.4);
+}
+
+.power-badge.tv-standby {
+    background: rgba(245, 166, 35, 0.2);
+    color: #f5a623;
+    border: 1px solid rgba(245, 166, 35, 0.4);
+}
+
+.power-badge.tv-off {
+    background: rgba(232, 43, 89, 0.2);
+    color: #e82b59;
+    border: 1px solid rgba(232, 43, 89, 0.4);
+}
+
+.hero-status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.power-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.power-pill .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.power-pill.on {
+    background: rgba(30, 215, 96, 0.2);
+    color: #1ed760;
+    border: 1px solid rgba(30, 215, 96, 0.4);
+}
+.power-pill.on .pill-dot {
+    background: #1ed760;
+    box-shadow: 0 0 6px rgba(30, 215, 96, 0.8);
+}
+
+.power-pill.standby {
+    background: rgba(245, 166, 35, 0.2);
+    color: #f5a623;
+    border: 1px solid rgba(245, 166, 35, 0.4);
+}
+.power-pill.standby .pill-dot {
+    background: #f5a623;
+}
+
+.power-pill.off {
+    background: rgba(232, 43, 89, 0.2);
+    color: #e82b59;
+    border: 1px solid rgba(232, 43, 89, 0.4);
+}
+.power-pill.off .pill-dot {
+    background: #e82b59;
+}
+
+.btn-hero-wake {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(232, 43, 89, 0.25);
+    border: 1px solid rgba(232, 43, 89, 0.6);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+.btn-hero-wake:hover {
+    background: rgba(232, 43, 89, 0.45);
+}
+
 /* Pairing Prompt Box */
 .pairing-prompt-box {
     background: linear-gradient(135deg, rgba(232, 43, 89, 0.2) 0%, rgba(245, 166, 35, 0.15) 100%);
