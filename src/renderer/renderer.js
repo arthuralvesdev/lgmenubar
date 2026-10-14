@@ -1,5 +1,6 @@
 // Renderer logic for LGwebOS menubar
-const api = window.api;
+(() => {
+    const api = window.api;
 
 let currentState = {};
 let allApps = [];
@@ -384,5 +385,6 @@ api.onPrompt(() => {
     document.getElementById("pairing-prompt-box").classList.remove("hidden");
 });
 
-// Initial state fetch
-api.getState().then(updateUI);
+    // Initial state fetch
+    api.getState().then(updateUI);
+})();
