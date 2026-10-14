@@ -396,8 +396,13 @@ async function handlePower() {
         try {
             await client.turnOff();
             state.connected = false;
-            client.close();
-            state.notice = "TV desligada.";
+            state.isTvOn = false;
+            state.powerState = "Off";
+            if (client) {
+                client.close();
+                client = null;
+            }
+            state.notice = "Comando para desligar a TV enviado!";
             notifyState();
         } catch (e) {
             state.error = e.message;
@@ -415,6 +420,27 @@ async function handlePower() {
             notifyState();
         }
     }
+}
+
+async function handleTurnOff() {
+    if (client) {
+        try {
+            await client.turnOff();
+            state.connected = false;
+            state.isTvOn = false;
+            state.powerState = "Off";
+            client.close();
+            client = null;
+            state.notice = "TV desligada.";
+            notifyState();
+            return true;
+        } catch (e) {
+            state.error = e.message;
+            notifyState();
+            return false;
+        }
+    }
+    return false;
 }
 
 async function handleVolumeStep(up) {
@@ -474,6 +500,21 @@ ipcMain.handle("tv:disconnect", () => {
 
 ipcMain.handle("tv:pair", () => connectToTV(true));
 ipcMain.handle("tv:power", handlePower);
+ipcMain.handle("tv:turn-off", handleTurnOff);
+ipcMain.handle("tv:turn-on", async () => {
+    const config = loadConfig();
+    try {
+        await WebOSClient.wake(config.mac, config.host);
+        state.notice = "Sinal Wake-on-LAN enviado para ligar a TV!";
+        notifyState();
+        setTimeout(() => connectToTV(false), 3000);
+        return true;
+    } catch (e) {
+        state.error = e.message;
+        notifyState();
+        return false;
+    }
+});
 
 ipcMain.handle("tv:set-volume", async (_e, val) => {
     if (!client || !state.connected) return;

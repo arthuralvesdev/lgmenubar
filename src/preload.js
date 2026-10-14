@@ -8,6 +8,8 @@ contextBridge.exposeInMainWorld("api", {
     disconnect: () => ipcRenderer.invoke("tv:disconnect"),
     pair: () => ipcRenderer.invoke("tv:pair"),
     power: () => ipcRenderer.invoke("tv:power"),
+    turnOff: () => ipcRenderer.invoke("tv:turn-off"),
+    turnOn: () => ipcRenderer.invoke("tv:turn-on"),
     setVolume: (val) => ipcRenderer.invoke("tv:set-volume", val),
     volumeStep: (up) => ipcRenderer.invoke("tv:volume-step", up),
     toggleMute: () => ipcRenderer.invoke("tv:toggle-mute"),

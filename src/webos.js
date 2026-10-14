@@ -264,7 +264,15 @@ class WebOSClient extends EventEmitter {
     }
 
     async turnOff() {
-        return this.request("system/turnOff");
+        try {
+            return await this.request("system/turnOff");
+        } catch (_) {
+            try {
+                return await this.request("com.webos.service.tvpower/power/turnOff");
+            } catch (_) {
+                return await this.button("POWER");
+            }
+        }
     }
 
     static wake(mac, targetHost = "255.255.255.255") {

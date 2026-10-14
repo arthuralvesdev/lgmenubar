@@ -267,13 +267,19 @@ document.getElementById("btn-vol-up").addEventListener("click", () => api.volume
 
 // Power button
 document.getElementById("btn-power").addEventListener("click", () => {
-    api.power();
+    if (currentState && (currentState.connected || currentState.isTvOn || currentState.powerState === "Active" || currentState.powerState === "Suspend")) {
+        api.turnOff();
+        showToast("Enviando comando para desligar a TV...");
+    } else {
+        api.turnOn();
+        showToast("Enviando sinal para ligar a TV...");
+    }
 });
 
 const btnHeroWake = document.getElementById("btn-hero-wake");
 if (btnHeroWake) {
     btnHeroWake.addEventListener("click", () => {
-        api.power();
+        api.turnOn();
         showToast("Enviando sinal para ligar a TV...");
     });
 }
