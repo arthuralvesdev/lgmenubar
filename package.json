@@ -1,0 +1,28 @@
+{
+  "name": "lgmenubar",
+  "version": "1.0.0",
+  "description": "Native system tray remote for LG webOS TVs on Linux and macOS",
+  "main": "src/main.js",
+  "bin": {
+    "lgtv": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "electron43 --disable-vulkan src/main.js",
+    "pair": "node src/cli.js pair",
+    "status": "node src/cli.js status"
+  },
+  "keywords": [
+    "lg",
+    "webos",
+    "tv",
+    "remote",
+    "tray",
+    "menubar",
+    "linux"
+  ],
+  "author": "Arthur",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.22.0"
+  }
+}

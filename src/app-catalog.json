@@ -1,0 +1,192 @@
+[
+  {
+    "id": "amazon",
+    "title": "Prime Video",
+    "icon": "bb4e1793f131484c53.png"
+  },
+  {
+    "id": "amazon.alexa.view",
+    "title": "Amazon Alexa",
+    "icon": "85d4d556d1de51f9f3.png"
+  },
+  {
+    "id": "clarovideo.dla.1",
+    "title": "Clarovideo",
+    "icon": "b4f8bd6c17b379dde0.png"
+  },
+  {
+    "id": "com.apple.appletv",
+    "title": "Apple TV",
+    "icon": "1f28f48f4e8eb3b488.png"
+  },
+  {
+    "id": "com.directvgo.webostv-rt",
+    "title": "DIRECTV GO",
+    "icon": "be52d62a081d49bba3.png"
+  },
+  {
+    "id": "com.disney.alch.prod.lrd.app",
+    "title": "Star+",
+    "icon": "b0b6bad3c93e806eb6.png"
+  },
+  {
+    "id": "com.disney.disneyplus-prod",
+    "title": "Disney+",
+    "icon": "6851b57a3afdbd7ec7.png"
+  },
+  {
+    "id": "com.duplexiptv.app",
+    "title": "DuplexPlay",
+    "icon": "7a4ebb4321d5aa022e.png"
+  },
+  {
+    "id": "com.facebook.app.fbwatch",
+    "title": "Facebook Watch",
+    "icon": "dcea2785897f7c3cea.png"
+  },
+  {
+    "id": "com.geforcenow.play",
+    "title": "GeForce NOW",
+    "icon": "74cfc191d1d88a2200.png"
+  },
+  {
+    "id": "com.hbo.hbomax",
+    "title": "HBO Max",
+    "icon": "b350eaa6e92a9c9158.png"
+  },
+  {
+    "id": "com.hbolg.app",
+    "title": "HBO GO",
+    "icon": "d43aa0ce85cafddc18.png"
+  },
+  {
+    "id": "com.pplus.webapp.prod-intl",
+    "title": "Paramount+",
+    "icon": "824c85229b555be76b.png"
+  },
+  {
+    "id": "com.ssiptv.app",
+    "title": "SS IPTV",
+    "icon": "0b5e0f3f66b1e238b3.png"
+  },
+  {
+    "id": "com.tiktok.app.tv",
+    "title": "TikTok TV",
+    "icon": "eb159a9d122d86830a.png"
+  },
+  {
+    "id": "com.twin.app.gamingportal",
+    "title": "LG Gaming Portal",
+    "icon": "580a3fdcb1bdc01e23.png"
+  },
+  {
+    "id": "com.wbd.stream",
+    "title": "HBO Max",
+    "icon": "0e182343ea1a32f49d.png"
+  },
+  {
+    "id": "com.webos.app.browser",
+    "title": "Web Browser",
+    "icon": "1d26c8b0129acf19d8.png"
+  },
+  {
+    "id": "com.webos.app.discovery",
+    "title": "LG Content Store",
+    "icon": "8c43158a8851c7e2ba.png"
+  },
+  {
+    "id": "com.webos.app.homeconnect",
+    "title": "Home Dashboard",
+    "icon": "88ece2033bd67c4051.png"
+  },
+  {
+    "id": "com.webos.app.music",
+    "title": "Music",
+    "icon": "f7ab6f6def3864c5e4.png"
+  },
+  {
+    "id": "com.webos.app.photovideo",
+    "title": "Photos & Videos",
+    "icon": "e7c8e0f65e992edd66.png"
+  },
+  {
+    "id": "com.webos.app.sportsteamsettings",
+    "title": "Sports Alerts",
+    "icon": "06f16e28ffec86908c.png"
+  },
+  {
+    "id": "epoxyaisports",
+    "title": "LG Sports Playbook",
+    "icon": "ce52403cc158a7b8a4.png"
+  },
+  {
+    "id": "globoplaywebos",
+    "title": "Globoplay",
+    "icon": "69f556867cf76a18ee.png"
+  },
+  {
+    "id": "globosatplay",
+    "title": "Globo Channels",
+    "icon": "7f0ccf32df3f6e3227.png"
+  },
+  {
+    "id": "googleplaymovieswebos",
+    "title": "Google Play Movies & TV",
+    "icon": "03eaf5a591c43139f8.png"
+  },
+  {
+    "id": "karaokesmart",
+    "title": "Kanto",
+    "icon": "f8d1682b97552c73ea.png"
+  },
+  {
+    "id": "lgchannels.br",
+    "title": "LG Channels",
+    "icon": "22eba3dd1efdc5871d.png"
+  },
+  {
+    "id": "looke",
+    "title": "Looke",
+    "icon": "96dd253a037cc39503.png"
+  },
+  {
+    "id": "netflix",
+    "title": "Netflix",
+    "icon": "a2f831ceef57ba6e10.png"
+  },
+  {
+    "id": "smartstb",
+    "title": "Smart STB",
+    "icon": "5945b5daea17fc3741.png"
+  },
+  {
+    "id": "smartup",
+    "title": "SmartUP TV",
+    "icon": "c59735751955b11464.png"
+  },
+  {
+    "id": "spotify-beehive",
+    "title": "Spotify",
+    "icon": "3823c0359f3bb213c2.png"
+  },
+  {
+    "id": "tv.twitch.tv.starshot.lg",
+    "title": "Twitch",
+    "icon": "ac82491cfde1417113.png"
+  },
+  {
+    "id": "urban.ninja",
+    "title": "Urban Ninja",
+    "icon": "e59f18ab482984f409.png"
+  },
+  {
+    "id": "webos.day",
+    "title": "LG Streaming Week",
+    "icon": "54505f56ff1c3587d9.png"
+  },
+  {
+    "id": "youtube.leanback.v4",
+    "title": "YouTube",
+    "icon": "eaecc4d9b3595197c8.png"
+  }
+]

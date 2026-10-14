@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LGwebOS Menubar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="../assets/lg.png" class="header-logo" alt="LG" />
+                <div class="header-info">
+                    <span id="tv-name" class="tv-name">LG TV</span>
+                    <span class="tv-sub">LG · webOS</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="btn-power" class="icon-btn btn-power" title="Ligar / Desligar TV">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                        <line x1="12" y1="2" x2="12" y2="12"></line>
+                    </svg>
+                </button>
+                <button id="btn-settings" class="icon-btn" title="Configurações">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                <button id="btn-win-min" class="icon-btn" title="Minimizar para bandeja">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
+                <button id="btn-win-close" class="icon-btn" title="Ocultar janela">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Status banner -->
+        <div id="status-banner" class="status-banner">
+            <span id="status-dot" class="status-dot"></span>
+            <span id="status-text" class="status-text">Conectando...</span>
+        </div>
+
+        <!-- Pairing prompt modal -->
+        <div id="pairing-prompt-box" class="pairing-prompt-box hidden">
+            <div class="prompt-icon">📺</div>
+            <div class="prompt-msg">
+                <strong>Confirme na sua TV!</strong>
+                <p>Uma mensagem de autorização apareceu na tela da TV LG. Clique em <b>"Sim"</b> / <b>"Aceitar"</b> com o controle remoto.</p>
+            </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="tab-home">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                <span>Sua TV</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-remote">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><circle cx="12" cy="14" r="3"></circle></svg>
+                <span>Controle</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-apps">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <span>Apps</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-picture">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line></svg>
+                <span>Imagem</span>
+            </button>
+            <button class="tab-btn" data-tab="tab-activity">
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>Uso</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content-scroll">
+            <!-- TAB 1: HOME / SUA TV -->
+            <section id="tab-home" class="tab-pane active">
+                <!-- Active Hero Card -->
+                <div id="hero-card" class="hero-card">
+                    <div class="hero-backdrop"></div>
+                    <div class="hero-content">
+                        <div class="hero-app-badge">
+                            <span id="hero-app-title">Carregando...</span>
+                        </div>
+                        <h2 id="hero-title" class="hero-title">Sua TV LG</h2>
+                        <p id="hero-tagline" class="hero-tagline">Tudo que você ama, na tela grande.</p>
+                    </div>
+                </div>
+
+                <!-- Volume Card -->
+                <div class="card volume-card">
+                    <div class="card-title-row">
+                        <span class="card-title">VOLUME</span>
+                        <span id="volume-val-badge" class="volume-badge">0%</span>
+                    </div>
+                    <div class="volume-slider-row">
+                        <button id="btn-mute" class="icon-btn" title="Mudo">
+                            <svg id="svg-volume" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                        </button>
+                        <input id="volume-slider" type="range" min="0" max="100" value="0" class="slider" />
+                        <div class="step-buttons">
+                            <button id="btn-vol-down" class="btn-step">-</button>
+                            <button id="btn-vol-up" class="btn-step">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card">
+                    <span class="card-title">AÇÕES RÁPIDAS</span>
+                    <div class="quick-row">
+                        <button id="quick-playpause" class="btn-quick">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            <span>Play / Pause</span>
+                        </button>
+                        <button id="quick-home" class="btn-quick">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                            <span>Home</span>
+                        </button>
+                        <button id="quick-back" class="btn-quick">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            <span>Voltar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Inputs List -->
+                <div class="card">
+                    <span class="card-title">ENTRADAS DE VÍDEO</span>
+                    <div id="inputs-list" class="inputs-grid">
+                        <div class="input-chip active">HDMI 1</div>
+                        <div class="input-chip">HDMI 2</div>
+                        <div class="input-chip">HDMI 3</div>
+                        <div class="input-chip">HDMI 4</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: REMOTE -->
+            <section id="tab-remote" class="tab-pane">
+                <div class="dpad-container">
+                    <div class="dpad">
+                        <button id="dpad-up" class="dpad-btn dpad-up" title="Cima">▲</button>
+                        <button id="dpad-left" class="dpad-btn dpad-left" title="Esquerda">◀</button>
+                        <button id="dpad-ok" class="dpad-btn dpad-center" title="OK">OK</button>
+                        <button id="dpad-right" class="dpad-btn dpad-right" title="Direita">▶</button>
+                        <button id="dpad-down" class="dpad-btn dpad-down" title="Baixo">▼</button>
+                    </div>
+                </div>
+
+                <div class="remote-nav-row">
+                    <button id="nav-back" class="btn-remote-pill">BACK</button>
+                    <button id="nav-home" class="btn-remote-pill accent">HOME</button>
+                    <button id="nav-exit" class="btn-remote-pill">EXIT</button>
+                </div>
+
+                <div class="card">
+                    <span class="card-title">CONTROLES ADICIONAIS</span>
+                    <div class="media-controls-row">
+                        <button id="btn-rewind" class="btn-media" title="Retroceder">⏪</button>
+                        <button id="btn-play" class="btn-media" title="Play">▶</button>
+                        <button id="btn-pause" class="btn-media" title="Pause">⏸</button>
+                        <button id="btn-forward" class="btn-media" title="Avançar">⏩</button>
+                    </div>
+                </div>
+
+                <!-- Touchpad Pointer -->
+                <div class="card touchpad-card">
+                    <div class="card-title-row">
+                        <span class="card-title">TOUCHPAD (MAGIC POINTER)</span>
+                        <span class="hint-text">Arraste para mover o cursor na TV</span>
+                    </div>
+                    <div id="touchpad-area" class="touchpad-area">
+                        <span>Toque ou arraste aqui</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: APPS -->
+            <section id="tab-apps" class="tab-pane">
+                <div class="search-box">
+                    <input id="apps-search" type="text" placeholder="Buscar aplicativo na TV..." class="search-input" />
+                </div>
+                <div id="apps-grid" class="apps-grid">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- TAB 4: PICTURE -->
+            <section id="tab-picture" class="tab-pane">
+                <div class="card">
+                    <span class="card-title">AJUSTES DE IMAGEM</span>
+                    <div class="picture-slider-group">
+                        <div class="slider-label-row">
+                            <span>Luz de Fundo (Backlight)</span>
+                            <span id="pic-backlight-val">80</span>
+                        </div>
+                        <input id="pic-backlight" type="range" min="0" max="100" value="80" class="slider" />
+                    </div>
+
+                    <div class="picture-slider-group">
+                        <div class="slider-label-row">
+                            <span>Brilho (Brightness)</span>
+                            <span id="pic-brightness-val">50</span>
+                        </div>
+                        <input id="pic-brightness" type="range" min="0" max="100" value="50" class="slider" />
+                    </div>
+
+                    <div class="picture-slider-group">
+                        <div class="slider-label-row">
+                            <span>Contraste (Contrast)</span>
+                            <span id="pic-contrast-val">85</span>
+                        </div>
+                        <input id="pic-contrast" type="range" min="0" max="100" value="85" class="slider" />
+                    </div>
+
+                    <div class="picture-slider-group">
+                        <div class="slider-label-row">
+                            <span>Cor (Color)</span>
+                            <span id="pic-color-val">55</span>
+                        </div>
+                        <input id="pic-color" type="range" min="0" max="100" value="55" class="slider" />
+                    </div>
+
+                    <button id="btn-apply-picture" class="btn-primary" style="margin-top: 12px; width: 100%;">
+                        Aplicar Ajustes na TV
+                    </button>
+                </div>
+            </section>
+
+            <!-- TAB 5: ACTIVITY -->
+            <section id="tab-activity" class="tab-pane">
+                <div class="card">
+                    <span class="card-title">TEMPO DE USO HOJE</span>
+                    <div id="usage-list" class="usage-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- SETTINGS OVERLAY -->
+            <section id="settings-panel" class="settings-panel hidden">
+                <div class="card">
+                    <div class="card-title-row">
+                        <span class="card-title">CONFIGURAÇÕES DA TV</span>
+                        <button id="btn-close-settings" class="btn-close">&times;</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Endereço IP da TV</label>
+                        <input id="cfg-host" type="text" class="text-input" placeholder="192.168.1.X" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nome da TV</label>
+                        <input id="cfg-name" type="text" class="text-input" placeholder="Minha TV LG" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Endereço MAC (para Wake-on-LAN)</label>
+                        <input id="cfg-mac" type="text" class="text-input" placeholder="XX:XX:XX:XX:XX:XX" />
+                    </div>
+
+                    <div class="settings-actions">
+                        <button id="btn-save-cfg" class="btn-primary">Salvar e Conectar</button>
+                        <button id="btn-pair-tv" class="btn-secondary">Parear Novamente</button>
+                        <button id="btn-discover-tv" class="btn-secondary">Procurar na Rede (SSDP)</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Notifications -->
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
